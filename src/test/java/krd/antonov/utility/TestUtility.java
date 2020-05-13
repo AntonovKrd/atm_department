@@ -1,9 +1,8 @@
-package krd.antonov;
+package krd.antonov.utility;
 
 import krd.antonov.storage.BanknoteStorage;
 import krd.antonov.storage.BanknotesDenomination;
 import krd.antonov.storage.exceptions.BanknoteException;
-import krd.antonov.utility.Utility;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

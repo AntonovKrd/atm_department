@@ -1,7 +1,5 @@
-package krd.antonov;
+package krd.antonov.storage;
 
-import krd.antonov.storage.BanknoteStorage;
-import krd.antonov.storage.BanknotesDenomination;
 import krd.antonov.storage.exceptions.BanknoteException;
 import org.apache.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
