@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class BanknoteStorage {
     private final static Logger log = Logger.getLogger(BanknoteStorage.class);
     private HashMap<BanknotesDenomination, Integer> dollarsMap;
-
+    private final MementoBanknoteStorage backup;
     public BanknoteStorage(int oneDollarsCount, int twoDollarsCount, int fiveDollarsCount, int tenDollarsCount,
                            int twentyDollarsCount, int fiftyDollarsCount, int oneHundredDollarsCount) throws BanknoteException {
         this.dollarsMap = new HashMap<>();
@@ -26,6 +26,8 @@ public class BanknoteStorage {
         this.dollarsMap.put(BanknotesDenomination.EMPTY, 0);
         checkDollarsMap();
         log.info("BanknoteStorage is created");
+        this.backup = new MementoBanknoteStorage(dollarsMap);
+        log.info("Backup created");
     }
 
     private void checkDollarsMap() throws BanknoteException {
@@ -90,5 +92,17 @@ public class BanknoteStorage {
         dollarsMap = copyDollarsMap;
         log.info(Utility.convertMapDollarsToString(dollars) + " given out");
         return dollars;
+    }
+
+    public void restore() {
+        this.dollarsMap = backup.dollarsMap;
+    }
+
+    private static class MementoBanknoteStorage {
+        private final HashMap<BanknotesDenomination, Integer> dollarsMap;
+
+        MementoBanknoteStorage(HashMap<BanknotesDenomination, Integer> dollarsMap) {
+            this.dollarsMap = dollarsMap;
+        }
     }
 }

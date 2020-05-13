@@ -9,8 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestBanknoteStorage {
     private static final Logger log = Logger.getLogger(TestBanknoteStorage.class);
@@ -99,4 +98,12 @@ public class TestBanknoteStorage {
         assertEquals(sumDollars, banknoteStorage.getSumDollars());
     }
 
+    @Test
+    void testRestore() throws BanknoteException {
+        BanknoteStorage storage = new BanknoteStorage(5, 5, 5, 5, 5, 5, 5);
+        storage.getMinBillsDollars(433);
+        assertNotEquals(banknoteStorage.getAllDollars(), storage.getAllDollars());
+        storage.restore();
+        assertEquals(banknoteStorage.getAllDollars(), storage.getAllDollars());
+    }
 }
