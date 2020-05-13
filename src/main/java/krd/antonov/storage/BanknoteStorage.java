@@ -35,10 +35,11 @@ public class BanknoteStorage {
             throw new BanknoteException("Incorrect counts banknotes");
         }
     }
-
+    //balance
     public HashMap<BanknotesDenomination, Integer> getAllDollars() {
         HashMap<BanknotesDenomination, Integer> dollars = new HashMap<>(dollarsMap);
         dollars.remove(BanknotesDenomination.EMPTY);
+
         return dollars;
     }
 
